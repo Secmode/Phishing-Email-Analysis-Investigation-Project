@@ -12,7 +12,7 @@ The project demonstrates both the **attacker’s perspective** (hosting a phishi
 The lab covers a wide range of **Phishing Email Investigation and Analysis tasks**, including:
 
 <p float="left">  
-<code>Email Header Review</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Threat Analysis</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Spoofing Detection</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Malicious Link Analysis</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Networking & Traffic Analysis</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Credential Harvesting Awareness</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Incident Response Workflows</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>IOC Extraction & Threat Hunting</code> &nbsp;&nbsp; | &nbsp;&nbsp;  <code>SOC Investigation Reporting</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Defensive Security Mindset</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Email Analysis Tool Proficiency</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Wireshark Packet Capture</code> &nbsp;&nbsp; | &nbsp;&nbsp;  <code>Attack Simulation (Python Server)</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Credential Harvest Logging</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Open-Source Intelligence (OSINT)</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Artifact Documentation</code>  </p>
+<code>Email Header Review</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Threat Analysis</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Spoofing Detection</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Malicious Link Analysis</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Networking & Traffic Analysis</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Credential Harvesting Awareness</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Incident Response Workflows</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>IOC Extraction & Threat Hunting</code> &nbsp;&nbsp; | &nbsp;&nbsp;  <code>SOC Investigation Reporting</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Defensive Security Mindset</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Email Analysis Tool Proficiency</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Wireshark Packet Capture</code> &nbsp;&nbsp; | &nbsp;&nbsp;  <code>Attack Simulation (Python Server)</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Artifact Documentation</code>  </p>
 
 ---
 
@@ -27,7 +27,7 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 | **Phishing Web Server (Python)** | Served fake voicemail login page and logged credential submissions | 192.168.0.13 (same as attacker) |
 | **Wireshark Capture Point** | Captured SMTP, DNS, and HTTP/HTTPS traffic for analysis | Between Victim & Attacker |
 
----
+**Tools Used:** Wireshark, Python (HTTP Server),Sublime Text, MXToolbox , REMnux, Mailtower, dnstwister, phishtool, Virtualization..
 <img width="975" height="741" alt="image" src="https://github.com/user-attachments/assets/60c3e252-f997-4daa-a283-9e30877b9f9c" />
 
 
