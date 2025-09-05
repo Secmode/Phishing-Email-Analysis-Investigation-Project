@@ -31,12 +31,9 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 <img width="975" height="741" alt="image" src="https://github.com/user-attachments/assets/60c3e252-f997-4daa-a283-9e30877b9f9c" />
 
 
----
-
-## 🔹 Attack & Investigation Workflow : Still working on the rest of the project: Thanks for viewing   
 
 ---
-## 🔹 Attack Preparations Workflow  
+## 🔹 Attack Workflow  
 1. `server01.py` → **Phishing Web Server** → **Hosts the fake login page**  → **Listens for victim requests on port 80**  → **Logs every time a victim visits the phishing site** → **Captures credentials**.
    
    <img width="621" height="297" alt="image" src="https://github.com/user-attachments/assets/872b2717-dc0a-4a67-8fce-2d74a362870c" />
@@ -51,15 +48,17 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
        <img width="923" height="391" alt="image" src="https://github.com/user-attachments/assets/0c2d1eb2-d456-4e06-8290-fa6d40b83153" />
        <img width="1008" height="426" alt="image" src="https://github.com/user-attachments/assets/d872cc5f-4bd0-4c70-bc8d-a2ba19af1398" />
        <img width="1492" height="132" alt="image" src="https://github.com/user-attachments/assets/953cd05b-9469-42a3-8039-8c896ec6463c" />
-       ---
+       
+---
 ## 🔹 Victim Workflow Simulation 
 1. `Windows 10 Thunderbird inbox` → **Victim Receives the Email** → **Victim Opens the Email**  → **Victim Clicks the Link**  → **Victim Submits Credentials**  → **Awareness Outcome**
    
     <img width="654" height="532" alt="image" src="https://github.com/user-attachments/assets/021128e4-3e8c-4074-b9b8-cf19be2eabd1" />
     <img width="997" height="826" alt="image" src="https://github.com/user-attachments/assets/3234b915-945f-4152-ad1d-6f712aed824f" />
     <img width="765" height="418" alt="image" src="https://github.com/user-attachments/assets/22deabd8-b8b5-45f2-a8c5-5e0b4ee15166" />
-
-    ## 🔹 Investigation Workflow (with Wireshark)
+    
+ ---
+ ## 🔹 Investigation Workflow (with Wireshark)
 1. `SOC analyst / incident responder` → **Collect the Phishing Email** → **Header Analysis**  → **Body & Link Analysis**  → **Indicator of Compromise (IOC) Extraction**  → **Packet Capture**  → **Open-Source Intel (Safe Investigation)**
 
 
@@ -75,8 +74,12 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 
 
 
-=============================================================================================================
-1. **Setup Phishing Web Server Server.py and ** **Create Phishing Email** **Build the Phish login.html
+======================================================
+---
+
+## 🔹 Still working on the rest of the project: Thanks for viewing   
+=======================================================
+
 
 ## 🔹 Attack & Investigation Workflow  
 1. **Phishing Email Sent**  
