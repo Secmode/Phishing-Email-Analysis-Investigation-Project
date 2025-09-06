@@ -58,47 +58,139 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
     <img width="765" height="418" alt="image" src="https://github.com/user-attachments/assets/22deabd8-b8b5-45f2-a8c5-5e0b4ee15166" />
     
  ---
- ## 🔹 Investigation Workflow (with Wireshark)
+ ## 🔹 Phishing Email Investigation  And Report (with Wireshark/ Sublime Txt/ REMnux/ phishtool)
 1. `SOC analyst / incident responder` → **Collect the Phishing Email** → **Header Analysis**  → **Body & Link Analysis**  → **Indicator of Compromise (IOC) Extraction**  → **Packet Capture**  → **Open-Source Intel (Safe Investigation)**
 
-
-
-       
-
-       
-
-
-      
-
-
-
-
-
-======================================================
 ---
 
-## 🔹 Still working on the rest of the project: Thanks for viewing   
-=======================================================
 
 
-## 🔹 Attack & Investigation Workflow  
-1. **Phishing Email Sent**  
-   - Spoofed sender with subject: *“You have a new voicemail”*.  
-   - Embedded link leading to phishing login page.  
+# 📧 Phishing Email Investigation Report
 
-2. **Victim Interaction**  
-   - Victim clicks link and is redirected to fake login page.  
-   - Credentials submitted are harvested by attacker server.  
+**Project:** Phishing Analysis Lab  
+**Date of Investigation:** 2025-08-30  
+**Analyst:** [Dammie Ajewole]  
 
-3. **Packet Capture with Wireshark**  
-   - Captured traffic includes:  
-     - SMTP email delivery.  
-     - DNS requests for phishing domain.  
-     - HTTP POST requests containing credentials.  
+---
 
-4. **Artifact Collection & Analysis**  
-   - Extracted IOCs: sender domain, IPs, URLs, email headers.  
-   - Analyzed with REMnux and open-source tools.  
+## 1. Email Overview
+
+- **Subject:** 📩 New Voicemail Received (37 seconds)  
+- **From:** Voicemail Service <voicemail@office365-support.com>  
+- **Reply-To:** cyberlocal@proton.me  
+- **To:** johndoe@secmode.com  
+- **Return-Path:** <cyberlocal@proton.me>  
+- **Message-ID:** <20250830164500.ABC123@office365-support.com>  
+- **Date:** Sat, 30 Aug 2025 16:45:00 -0400  
+
+---
+
+## 2. Email Header Analysis
+
+| Header Field            | Value |
+|--------------------------|-------|
+| **Return-Path**          | cyberlocal@proton.me |
+| **Received From**        | mail.proton.me [192.0.2.55] |
+| **X-Originating-IP**     | 192.0.2.1 |
+| **SPF Result**           | Fail |
+| **DKIM Result**          | None |
+| **DMARC Result**         | Fail |
+
+📸 *Screenshot Placeholder: Header analysis in Thunderbird / Outlook / M365 Message Trace*
+
+---
+
+## 3. Body & Social Engineering Techniques
+
+- Claims to be from **Microsoft Voicemail Service**.  
+- Urgency tactic: "Message will be deleted after 24 hours."  
+- Call-to-action: Click "Listen to Voicemail" button.  
+- Spoofed branding (uses "Office365" in sender domain).  
+
+📸 *Screenshot Placeholder: Email body preview highlighting the malicious link*
+
+---
+
+## 4. Indicators of Compromise (IOCs)
+
+### URLs
+- `http://192.168.0.13/index.html` → Malicious link disguised as voicemail button.  
+- `http://192.168.0.13:8000/tracking_pixel.png?id=voicemail_lab_20250830` → Tracking pixel beacon.  
+
+### Email Addresses
+- **Sender:** voicemail@office365-support.com (spoofed)  
+- **Reply-To:** cyberlocal@proton.me  
+
+### Attachments
+- `Voicemail_Transcription.txt` (benign in this lab sample, but would normally be analyzed with sandboxing).  
+
+📸 *Screenshot Placeholder: URL analysis on urlscan.io / VirusTotal*
+
+---
+
+## 5. Tools Used
+
+- **Header Analysis:** Thunderbird / Outlook / M365 Message Trace  
+- **IOC Extraction:** `EIOC.py` (or `emldump` / `emlAnalyzer`)  
+- **URL Analysis:** [urlscan.io](https://urlscan.io), [VirusTotal](https://www.virustotal.com)  
+- **WHOIS / DNS:** `whois`, `nslookup`, `dig`  
+- **Attachment Analysis:** [Hybrid Analysis](https://www.hybrid-analysis.com), Any.Run sandbox  
+- **Traffic Capture (Lab):** Wireshark / tcpdump  
+
+---
+
+## 6. Analysis Notes
+
+- SPF, DKIM, and DMARC all **failed** → Strong indicator of spoofed sender.  
+- **Voicemail theme** is a common phishing lure.  
+- Link points to **internal lab IP (192.168.0.13)** but in real-world cases this would be an attacker-controlled server.  
+- Tracking pixel indicates attacker monitoring for email open events.  
+
+📸 *Screenshot Placeholder: Authentication results showing SPF/DKIM/DMARC fail*  
+
+---
+
+## 7. Verdict
+
+**Result:** 🚨 Malicious (Phishing Attempt)  
+
+- Social engineering (urgency + voicemail lure).  
+- Failed authentication mechanisms (SPF, DKIM, DMARC).  
+- Malicious embedded link and tracking pixel.  
+
+---
+
+## 8. Containment & Defense Actions
+
+1. **Determine Scope**  
+   - Review M365 message trace to check if similar emails were delivered.  
+   - Search email security logs for sender/reply-to/subject IOCs.  
+
+2. **Containment**  
+   - Quarantine the email in Exchange Admin Center.  
+   - Block sender domain (`office365-support.com`) and `proton.me` in mail flow rules.  
+
+3. **Proactive Defense**  
+   - Add phishing URLs to URL blocklist (Defender / proxy / firewall).  
+   - Educate users: Awareness campaign on voicemail-themed phishing emails.  
+   - Monitor for beaconing attempts from `tracking_pixel.png`.  
+
+📸 *Screenshot Placeholder: Quarantined email in Exchange Admin Center*  
+
+---
+
+## 9. Lessons Learned
+
+- Always verify SPF/DKIM/DMARC alignment.  
+- Voicemail and missed call phishing themes remain highly effective.  
+- Tracking pixels are often overlooked but provide adversaries with reconnaissance.  
+
+---
+
+✅ **Final Status:** Email confirmed as phishing. IOC list shared with SOC detection team.  
+
+---
+
 
 5. **SOC Report Creation**  
    - Findings documented into a structured SOC report with IOCs and mitigation recommendations.  
