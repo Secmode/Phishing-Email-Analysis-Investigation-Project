@@ -1,10 +1,16 @@
 
 #  Phishing Email Analysis & Investigation Project  
 
-## 🔹 Overview  
-This project simulates a **real-world phishing campaign** and documents the **SOC analyst investigation process** from email delivery to artifact collection and reporting. The phishing email was crafted to appear as a **voicemail notification from Office**, leading victims to a fake login page where credentials could be harvested.  
+## 🔹 Overview
 
-The project demonstrates both the **attacker’s perspective** (hosting a phishing page, logging credentials) and the **defender’s perspective** (analyzing the phishing email, capturing traffic with Wireshark, and extracting IOCs).  
+This project simulates a **real-world phishing campaign** and documents the **SOC analyst investigation process** from email delivery to artifact collection and reporting.  
+The phishing email was crafted to appear as a **voicemail notification from Office**, leading victims to a fake login page where credentials could be harvested.  
+
+The project demonstrates both perspectives:  
+- **Attacker:** Hosting a phishing page and logging credentials  
+- **Defender:** Analyzing the phishing email, capturing traffic with Wireshark, and extracting IOCs
+
+
 
 ---
 
@@ -12,7 +18,9 @@ The project demonstrates both the **attacker’s perspective** (hosting a phishi
 The lab covers a wide range of **Phishing Email Investigation and Analysis tasks**, including:
 
 <p float="left">  
-<code>Email Header Review</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Threat Analysis</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Spoofing Detection</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Malicious Link Analysis</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Networking & Traffic Analysis</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Credential Harvesting Awareness</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Incident Response Workflows</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>IOC Extraction & Threat Hunting</code> &nbsp;&nbsp; | &nbsp;&nbsp;  <code>SOC Investigation Reporting</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Defensive Security Mindset</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Email Analysis Tool Proficiency</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Wireshark Packet Capture</code> &nbsp;&nbsp; | &nbsp;&nbsp;  <code>Attack Simulation (Python Server)</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Artifact Documentation</code>  </p>
+<code>Email Header Review</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Malicious Link Analysis</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>IOC Extraction & Threat Hunting</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>SOC Investigation Reporting</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Defensive Security Mindset</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Email Analysis Tool Proficiency</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Wireshark Packet Capture</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Attack Simulation (Python Server)</code> &nbsp;&nbsp; | &nbsp;&nbsp; <code>Artifact Documentation</code>  
+</p>
+
 
 ---
 
@@ -135,6 +143,13 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 - **Reply-To:** cyberlocal@proton.me  
 
 ### Attachments
+## Attachments
+| Attachment Name | MD5 | SHA1 | SHA256 |
+|-----------------|-----|------|--------|
+| Voicemail_Transcription.txt | 528d1ddc8a80d55e607eb6d15c4dbee2 | a6abcaff0eb79f491d7d8b8dbd9a376198261764 | b636c9cef547b1a18ce1dd2f998d2bee865a96f0e04958b4265ff75d7bfb764d
+
+
+---
 - `Voicemail_Transcription.txt` (Analyze with **Virustotal** and **phishtool**).  
 
 <img width="1939" height="511" alt="image" src="https://github.com/user-attachments/assets/a0a5c6b4-9be3-49dd-8116-2ea365ecbe85" />
@@ -142,7 +157,7 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 
 --
 
-## 4.1 Network Traffic Analysis (Wireshark)
+## 5. Network Traffic Analysis (Wireshark)
 
 - Wireshark on SOC workstation, filtered with: **ip.addr == 192.168.0.12 && ip.addr == 192.168.0.13** **http.request.method==POST** **http.request.uri contains "tracking_pixel"**  To **Observed victim → attacker traffic when the phishing link was clicked.**
 
@@ -159,7 +174,7 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 
 ---
 
-## 5. Tools Used
+## 6. Tools Used
 
 - **Header Analysis:** Thunderbird / Outlook / M365 Message Trace  
 - **IOC Extraction:** `EIOC.py` (or `emldump` / `emlAnalyzer`)  
@@ -170,7 +185,7 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 
 ---
 
-## 6. Analysis Notes
+## 7.  Analysis Notes
 
 **Authentication Results:**
 - **SPF:** SoftFail → sender not authorized (`proton.me`)
@@ -191,7 +206,7 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 
 ---
 
-## 7. Verdict
+## 8.  Verdict
 
 **Result:** 🚨 Malicious (Phishing Attempt)  
 
@@ -201,7 +216,7 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 
 ---
 
-## 8. Containment & Defense Actions
+## 9.  Containment & Defense Actions
 
 1. **Determine Scope**  
    - Review M365 message trace to check if similar emails were delivered.  
@@ -216,7 +231,7 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
    - Educate users: Awareness campaign on voicemail-themed phishing emails.  
    - Monitor for beaconing attempts from `tracking_pixel.png`.  
 
-## 10. Key Artifacts / IOCs
+##  Key Artifacts / IOCs
 
 **URLs:**
 - [http://192.168.0.13/index.html](http://192.168.0.13/index.html) → phishing page
