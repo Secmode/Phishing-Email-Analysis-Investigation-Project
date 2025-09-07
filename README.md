@@ -142,7 +142,6 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 - **Sender:** voicemail@office365-support.com (spoofed)  
 - **Reply-To:** cyberlocal@proton.me  
 
-### Attachments
 ## Attachments
 | Attachment Name | MD5 | SHA1 | SHA256 |
 |-----------------|-----|------|--------|
@@ -176,8 +175,8 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 
 ## 6. Tools Used
 
-- **Header Analysis:** Thunderbird / Outlook / M365 Message Trace  
-- **IOC Extraction:** `EIOC.py` (or `emldump` / `emlAnalyzer`)  
+- **Header Analysis:** Thunderbird / Outlook / [Mailtower](https://mailheader.mailtower.app/#/),
+- **IOC Extraction:** `EIOC.py` / [PhishToolAnalysis](https://app.phishtool.com)
 - **URL Analysis:** [urlscan.io](https://urlscan.io), [VirusTotal](https://www.virustotal.com)  
 - **WHOIS / DNS:** `whois`, `nslookup`, `dig`  
 - **Attachment Analysis:** [PhishToolAnalysis](https://app.phishtool.com), Any.Run sandbox  
