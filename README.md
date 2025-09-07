@@ -97,7 +97,7 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 | **DMARC Result**         | Fail |
 
 
-<img width="624" height="321" alt="image" src="https://github.com/user-attachments/assets/64c8d2d6-7268-4ac9-b1e5-3a8ab4719cef" />
+<img width="1875" height="617" alt="image" src="https://github.com/user-attachments/assets/af3051c1-0daf-4075-ba05-a9bb89fe8062" />
 <img width="549" height="348" alt="image" src="https://github.com/user-attachments/assets/f8aa9a54-7ad8-419e-867c-b4f10a1122c2" />
 
 
@@ -125,6 +125,8 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
   <img width="873" height="781" alt="image" src="https://github.com/user-attachments/assets/d2028ea0-8a0b-4c13-ba7c-7926343847f2" />
   <img width="1052" height="568" alt="image" src="https://github.com/user-attachments/assets/edc207ba-0b9b-4800-b6ad-9cd0240e8603" />
   <img width="1905" height="942" alt="image" src="https://github.com/user-attachments/assets/1e412b42-f9af-4c0a-b01e-a6c2518be0c6" />
+  <img width="968" height="412" alt="image" src="https://github.com/user-attachments/assets/d87a5c56-5ea8-46d5-b9a8-7edd72eb459c" />
+
 
 
 
@@ -135,7 +137,7 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 ### Attachments
 - `Voicemail_Transcription.txt` (Analyze with **Virustotal** and **phishtool**).  
 
-<img width="1558" height="482" alt="image" src="https://github.com/user-attachments/assets/d4ce8916-56b6-4c79-a8a7-642b00602e8f" />
+<img width="1939" height="511" alt="image" src="https://github.com/user-attachments/assets/a0a5c6b4-9be3-49dd-8116-2ea365ecbe85" />
 <img width="1365" height="534" alt="image" src="https://github.com/user-attachments/assets/e5f43a3a-1559-4ce0-bc7d-8be0917c12c6" />
 
 --
@@ -163,8 +165,8 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 - **IOC Extraction:** `EIOC.py` (or `emldump` / `emlAnalyzer`)  
 - **URL Analysis:** [urlscan.io](https://urlscan.io), [VirusTotal](https://www.virustotal.com)  
 - **WHOIS / DNS:** `whois`, `nslookup`, `dig`  
-- **Attachment Analysis:** [Hybrid Analysis](https://www.hybrid-analysis.com), Any.Run sandbox  
-- **Traffic Capture (Lab):** Wireshark / tcpdump  
+- **Attachment Analysis:** [PhishToolAnalysis](https://app.phishtool.com), Any.Run sandbox  
+- **Traffic Capture (Lab):** Wireshark 
 
 ---
 
@@ -183,8 +185,7 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 - **Phishing link:** [http://192.168.0.13/index.html](http://192.168.0.13/index.html)
 - **Tracking pixel:** [http://192.168.0.13:8000/tracking_pixel.png](http://192.168.0.13:8000/tracking_pixel.png)
 
-<img width="1794" height="863" alt="image" src="https://github.com/user-attachments/assets/4d01e3c7-7f24-47e0-9616-125b4bceaaf9" />
-
+<img width="1858" height="859" alt="image" src="https://github.com/user-attachments/assets/a9fab7ed-523b-4908-b9b4-5d16b8891f23" />
 <img width="588" height="779" alt="image" src="https://github.com/user-attachments/assets/8a2fe86f-3808-4a66-96e5-fcf271741c30" />
 
 
@@ -196,7 +197,7 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 
 - Social engineering (urgency + voicemail lure).  
 - Failed authentication mechanisms (SPF, DKIM, DMARC).  
-- Malicious embedded link and tracking pixel.  
+- Malicious link and tracking pixel detected.  
 
 ---
 
@@ -215,38 +216,24 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
    - Educate users: Awareness campaign on voicemail-themed phishing emails.  
    - Monitor for beaconing attempts from `tracking_pixel.png`.  
 
-📸 *Screenshot Placeholder: Quarantined email in Exchange Admin Center*  
+## 10. Key Artifacts / IOCs
+
+**URLs:**
+- [http://192.168.0.13/index.html](http://192.168.0.13/index.html) → phishing page
+- [http://192.168.0.13:8000/tracking_pixel.png](http://192.168.0.13:8000/tracking_pixel.png) → tracking beacon
+
+**Email Addresses:**
+- **Sender:** `voicemail@office365-support.com` (spoofed)
+- **Reply-To:** `cyberlocal@proton.me`
+
+**Attachments:**
+- `Voicemail_Transcription.txt` → analyzed for malicious content
+
+**IPs:**
+- **X-Originating-IP:** `192.0.2.1`
+
 
 ---
-
-## 9. Lessons Learned
-
-- Always verify SPF/DKIM/DMARC alignment.  
-- Voicemail and missed call phishing themes remain highly effective.  
-- Tracking pixels are often overlooked but provide adversaries with reconnaissance.  
-
----
-
-✅ **Final Status:** Email confirmed as phishing. IOC list shared with SOC detection team.  
-
----
-
-
-5. **SOC Report Creation**  
-   - Findings documented into a structured SOC report with IOCs and mitigation recommendations.  
-
----
-
-## 🔹 Indicators of Compromise (IOCs)  
-| Indicator                        | Type          | Description                |  
-|----------------------------------|--------------|----------------------------|  
-| service@office-voicemail.com     | Email Address | Spoofed sender address     |  
-| 192.168.0.13                     | IP Address    | Attacker server            |  
-| http://192.168.0.13/login        | URL           | Phishing login page        |  
-| “Office voicemail notification”  | Subject Line  | Phishing lure              |  
-
----
-
 ## 🔹 Key Skills Demonstrated  
 - Phishing email analysis (headers, sender spoofing).  
 - Network traffic analysis with **Wireshark**.  
@@ -257,30 +244,20 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 ---
 
 ## 🔹 Project Outcome  
+
 This project highlights my ability to:  
-- Understand phishing attack vectors.  
-- Capture and analyze artifacts using Wireshark.  
-- Investigate phishing emails as a SOC Analyst.  
-- Document findings in a clear SOC report.  
-
-It demonstrates **entry-level SOC Analyst skills** and readiness to investigate real-world phishing attacks.  
-
----
-
-## 📸 Screenshots Included  
-- Phishing email in victim inbox.  
-- Email header analysis (Sublime + tools).  
-- Python server with credential harvesting logs.  
-- Fake voicemail/login phishing page.  
-- Wireshark captures (DNS + HTTP traffic).  
-- Extracted IOC list and SOC report summary.  
+- Understand phishing attack vectors  
+- Capture and analyze artifacts using Wireshark  
+- Investigate phishing emails as a SOC Analyst  
+- Document findings in a clear SOC report  
+- Verify SPF/DKIM/DMARC alignment  
+- Recognize voicemail and missed call phishing themes as highly effective  
+- Identify tracking pixels that provide adversaries with reconnaissance
 
 ---
 
-## 🔹 How to Use This Project  
-- Clone this repo to review my artifacts and documentation.  
-- Screenshots and SOC report are provided in `/screenshots` and `/report` folders.  
-- This lab is for **educational and demonstration purposes only**.  
+✅ **Final Status:** Email confirmed as phishing. IOC list shared with SOC detection team.  
 
----
-
+> **Note:** This project is Part One. All samples used were **created by me for safe testing purposes**.  
+> Now that I am familiar with phishing analysis, I plan to download real-world samples from **PhishingPot on GitHub** to further improve my knowledge and skills.
+ 
