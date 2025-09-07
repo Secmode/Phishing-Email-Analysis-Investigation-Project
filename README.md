@@ -96,7 +96,11 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 | **DKIM Result**          | None |
 | **DMARC Result**         | Fail |
 
-📸 *Screenshot Placeholder: Header analysis in Thunderbird / Outlook / M365 Message Trace*
+
+<img width="624" height="321" alt="image" src="https://github.com/user-attachments/assets/64c8d2d6-7268-4ac9-b1e5-3a8ab4719cef" />
+<img width="549" height="348" alt="image" src="https://github.com/user-attachments/assets/f8aa9a54-7ad8-419e-867c-b4f10a1122c2" />
+
+
 
 ---
 
@@ -107,7 +111,8 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 - Call-to-action: Click "Listen to Voicemail" button.  
 - Spoofed branding (uses "Office365" in sender domain).  
 
-📸 *Screenshot Placeholder: Email body preview highlighting the malicious link*
+<img width="491" height="560" alt="image" src="https://github.com/user-attachments/assets/1481db56-3728-414a-b488-1b18fbda1497" />
+
 
 ---
 
@@ -115,16 +120,40 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 
 ### URLs
 - `http://192.168.0.13/index.html` → Malicious link disguised as voicemail button.  
-- `http://192.168.0.13:8000/tracking_pixel.png?id=voicemail_lab_20250830` → Tracking pixel beacon.  
+- `http://192.168.0.13:8000/tracking_pixel.png?id=voicemail_lab_20250830` → Tracking pixel beacon.
+- `http://192.168.0.13/login` → Phishing login page.
+  <img width="873" height="781" alt="image" src="https://github.com/user-attachments/assets/d2028ea0-8a0b-4c13-ba7c-7926343847f2" />
+  <img width="1052" height="568" alt="image" src="https://github.com/user-attachments/assets/edc207ba-0b9b-4800-b6ad-9cd0240e8603" />
+  <img width="1905" height="942" alt="image" src="https://github.com/user-attachments/assets/1e412b42-f9af-4c0a-b01e-a6c2518be0c6" />
+
+
 
 ### Email Addresses
 - **Sender:** voicemail@office365-support.com (spoofed)  
 - **Reply-To:** cyberlocal@proton.me  
 
 ### Attachments
-- `Voicemail_Transcription.txt` (benign in this lab sample, but would normally be analyzed with sandboxing).  
+- `Voicemail_Transcription.txt` (Analyze with **Virustotal** and **phishtool**).  
 
-📸 *Screenshot Placeholder: URL analysis on urlscan.io / VirusTotal*
+<img width="1558" height="482" alt="image" src="https://github.com/user-attachments/assets/d4ce8916-56b6-4c79-a8a7-642b00602e8f" />
+<img width="1365" height="534" alt="image" src="https://github.com/user-attachments/assets/e5f43a3a-1559-4ce0-bc7d-8be0917c12c6" />
+
+--
+
+## 4.1 Network Traffic Analysis (Wireshark)
+
+- Wireshark on SOC workstation, filtered with: **ip.addr == 192.168.0.12 && ip.addr == 192.168.0.13** **http.request.method==POST** **http.request.uri contains "tracking_pixel"**  To **Observed victim → attacker traffic when the phishing link was clicked.**
+
+- Captured **HTTP GET request** to `/index.html` (phishing page).  
+- Captured **HTTP POST request** with submitted credentials.  
+- Identified **tracking pixel request** to `/tracking_pixel.png`, confirming beaconing.  
+<img width="1924" height="581" alt="image" src="https://github.com/user-attachments/assets/b60e2be8-9dfc-45d3-b980-7ba88e395952" />
+<img width="1894" height="753" alt="image" src="https://github.com/user-attachments/assets/99cbe366-e3e0-4ded-bd6d-69d68a1e3621" />
+<img width="1879" height="665" alt="image" src="https://github.com/user-attachments/assets/06fe3a3c-85a5-4a3b-8ef1-812af5c133f6" />
+<img width="1522" height="628" alt="image" src="https://github.com/user-attachments/assets/c8749fef-e9e4-437a-9d71-f9ecebb86e4d" />
+
+
+
 
 ---
 
@@ -141,12 +170,23 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 
 ## 6. Analysis Notes
 
-- SPF, DKIM, and DMARC all **failed** → Strong indicator of spoofed sender.  
-- **Voicemail theme** is a common phishing lure.  
-- Link points to **internal lab IP (192.168.0.13)** but in real-world cases this would be an attacker-controlled server.  
-- Tracking pixel indicates attacker monitoring for email open events.  
+**Authentication Results:**
+- **SPF:** SoftFail → sender not authorized (`proton.me`)
+- **DKIM:** None → no cryptographic signature
+- **DMARC:** None → no enforcement record
 
-📸 *Screenshot Placeholder: Authentication results showing SPF/DKIM/DMARC fail*  
+**Originating IP:** `192.0.2.1` (no reverse DNS, unusual for legitimate mail servers)
+
+**Thematic Lure:** Voicemail notification creates urgency and encourages clicks
+
+**Malicious Artifacts:**
+- **Phishing link:** [http://192.168.0.13/index.html](http://192.168.0.13/index.html)
+- **Tracking pixel:** [http://192.168.0.13:8000/tracking_pixel.png](http://192.168.0.13:8000/tracking_pixel.png)
+
+<img width="1794" height="863" alt="image" src="https://github.com/user-attachments/assets/4d01e3c7-7f24-47e0-9616-125b4bceaaf9" />
+
+<img width="588" height="779" alt="image" src="https://github.com/user-attachments/assets/8a2fe86f-3808-4a66-96e5-fcf271741c30" />
+
 
 ---
 
