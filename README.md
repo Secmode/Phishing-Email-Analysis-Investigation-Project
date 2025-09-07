@@ -35,7 +35,7 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 | **Phishing Web Server (Python)** | Served fake voicemail login page and logged credential submissions | 192.168.0.13 (same as attacker) |
 | **Wireshark Capture Point** | Captured SMTP, DNS, and HTTP/HTTPS traffic for analysis | Between Victim & Attacker |
 
-**Tools Used:** Wireshark, Python (HTTP Server), Eioc.py, Sublime Text, Virustotal, REMnux, Mailtower, dnstwister, phishtool, Virtualization..
+**Tools Used:** Wireshark, Python (HTTP Server), Eioc.py, Sublime Text, Virustotal, REMnux, Miter Att&ck, Mailtower, dnstwister, phishtool, Virtualization..
 <img width="975" height="741" alt="image" src="https://github.com/user-attachments/assets/60c3e252-f997-4daa-a283-9e30877b9f9c" />
 
 
@@ -180,7 +180,10 @@ The lab covers a wide range of **Phishing Email Investigation and Analysis tasks
 - **URL Analysis:** [urlscan.io](https://urlscan.io), [VirusTotal](https://www.virustotal.com)  
 - **WHOIS / DNS:** `whois`, `nslookup`, `dig`  
 - **Attachment Analysis:** [PhishToolAnalysis](https://app.phishtool.com), Any.Run sandbox  
-- **Traffic Capture :** Wireshark 
+- **Traffic Capture :** Wireshark
+- **Mapped MITRE ATT&CK Tactic:**
+  <img width="1910" height="676" alt="image" src="https://github.com/user-attachments/assets/5678bc54-91b8-4ccc-a50e-1f818f2a3cd6" />
+
 
 ---
 
